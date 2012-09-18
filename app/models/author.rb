@@ -4,10 +4,10 @@ class Author
 
   field :name, type: String
   field :login, type: String
-  field :thumbnail, type: String
+  field :thumbnails, type: Hash
 
-  embedded_in :entry
   embeds_one :role
+  embedded_in :entry
 
   def home_url
     "http://www.redu.com.br/pesssoas/#{self.login}"
@@ -17,7 +17,4 @@ class Author
     "http://www.redu.com.br/api/users/#{self.login}"
   end
 
-  def thumbnails
-    [{href: self.thumbnail, size: "32x32"}]
-  end
 end
