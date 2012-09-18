@@ -1,15 +1,3 @@
-GIT
-  remote: git://github.com/intridea/grape.git
-  revision: b5b6d48a68890a2a1334d5de90bb4bb53c1184bf
-  specs:
-    grape (0.2.1)
-      hashie (~> 1.2)
-      multi_json
-      multi_xml
-      rack
-      rack-mount
-      virtus
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -23,7 +11,6 @@ GEM
     archive-tar-minitar (0.5.2)
     async-rack (0.5.1)
       rack (~> 1.1)
-    backports (2.6.4)
     builder (3.0.3)
     columnize (0.3.6)
     em-synchrony (1.0.2)
@@ -43,9 +30,16 @@ GEM
       rack (>= 1.2.2)
       rack-contrib
       rack-respond_to
+    grape (0.2.1)
+      hashie (~> 1.2)
+      multi_json
+      multi_xml
+      rack
+      rack-mount
     hashie (1.2.0)
     http_parser.rb (0.5.3)
     i18n (0.6.1)
+    json (1.7.5)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
     log4r (1.1.10)
@@ -57,6 +51,7 @@ GEM
     moped (1.2.1)
     multi_json (1.3.6)
     multi_xml (0.5.1)
+    nokogiri (1.5.5)
     origin (1.0.8)
     rack (1.4.1)
     rack-accept-media-types (0.9)
@@ -66,6 +61,11 @@ GEM
       rack (>= 1.0.0)
     rack-respond_to (0.9.8)
       rack-accept-media-types (>= 0.6)
+    representable (1.2.5)
+      json
+      nokogiri
+    roar (0.11.3)
+      representable (>= 1.2.2)
     ruby-debug-base19 (0.11.25)
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
@@ -77,14 +77,13 @@ GEM
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
     tzinfo (0.3.33)
-    virtus (0.5.2)
-      backports (~> 2.6.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   goliath
-  grape!
+  grape
   mongoid (~> 3.0.0)
+  roar
   ruby-debug19
