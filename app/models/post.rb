@@ -1,3 +1,5 @@
+require "./app/models/entry"
+
 class Post < Entry
   include Mongoid::Document
 

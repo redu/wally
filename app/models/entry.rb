@@ -1,3 +1,5 @@
+require "mongoid"
+
 class Entry
   include Mongoid::Document
 
