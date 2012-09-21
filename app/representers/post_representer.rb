@@ -6,7 +6,7 @@ module PostRepresenter
   include Roar::Representer::Feature::Hypermedia
 
   property :id
-  property :wall_id
+  property :origin_wall
   property :created_at
   property :author, :extend => AuthorRepresenter
   collection :answers
