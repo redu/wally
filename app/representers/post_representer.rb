@@ -9,7 +9,7 @@ module PostRepresenter
   property :origin_wall
   property :created_at
   property :author, :extend => AuthorRepresenter
-  collection :answers
+  collection :answers, :extend => AnswerRepresenter
   property :content
 
   link :self do
@@ -18,6 +18,4 @@ module PostRepresenter
 
   property :action
   property :rule
-
-
 end

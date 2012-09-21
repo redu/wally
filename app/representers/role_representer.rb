@@ -6,6 +6,5 @@ module RoleRepresenter
   include Roar::Representer::Feature::Hypermedia
 
   property :name
-  property :thumbnails
-
+  property :thumbnail
 end

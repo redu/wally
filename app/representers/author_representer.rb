@@ -15,6 +15,6 @@ module AuthorRepresenter
   end
 
   link :self do
-    home_url
+    perfil_url
   end
 end

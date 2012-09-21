@@ -7,7 +7,7 @@ module WallRepresenter
 
   property :id
   property :resource_id
-  collection :posts
+  collection :posts, :extend => PostRepresenter
 
   link :self do
     wall_path
