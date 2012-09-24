@@ -15,7 +15,7 @@ class Wall
   after_destroy :destroy_posts
 
   def wall_path
-    "http://wally.redu.com.br/walls/1"
+    "http://wally.redu.com.br/walls/#{self.id}"
   end
 
   private
