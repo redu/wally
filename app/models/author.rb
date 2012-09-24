@@ -2,6 +2,7 @@ class Author
   include Mongoid::Document
   attr_accessor :thumbnails
 
+  field :user_id, type: Integer
   field :name, type: String
   field :login, type: String
   field :thumbnails, type: Hash
