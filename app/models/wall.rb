@@ -5,6 +5,7 @@ class Wall
   field :resource_id, type: String
 
   #Associations
+  has_many :original_posts, class_name: "Post", inverse_of: :origin_wall
   has_and_belongs_to_many :posts
 
   #Validations
@@ -22,7 +23,7 @@ class Wall
 
   def destroy_posts
     self.posts.each do |post|
-      if post.origin_wall == self.id
+      if post.origin_wall == self
         post.destroy
       end
     end

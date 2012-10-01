@@ -1,5 +1,4 @@
 require "spec_helper"
-require "./app/models/entity"
 
 describe Entity do
   it { should have_field(:name).of_type(String) }
@@ -14,5 +13,5 @@ describe Entity do
   it { should validate_presence_of(:core_url) }
 
   it { have_many(:target_on_posts).of_type(Post).as_inverse_of(:target_on) }
-  it { have_and_belong_to_many(:context_posts).of_type(Post).as_inverse_of(:contexts) }
+  it { have_and_belong_to_many(:context_posts).of_type(Post).as_inverse_of(:context) }
 end

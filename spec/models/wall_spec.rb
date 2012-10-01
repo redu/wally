@@ -11,11 +11,12 @@ describe Wall do
   context "callbacks" do
     context "after destroy" do
       it "should destroy posts that have wall_id = subject.id" do
+        other_wall = create(:wall)
         5.times do
-          subject.posts << create_post_on_wall(1)
+          subject.posts << create_post_on_wall(other_wall)
         end
         5.times do
-          subject.posts << create_post_on_wall(subject.id)
+          subject.posts << create_post_on_wall(subject)
         end
         expect {
           subject.destroy

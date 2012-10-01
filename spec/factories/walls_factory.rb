@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :wall do
-    sequence(:resource_id) { |n| "core_space_#{n}" }
+    sequence(:resource_id) { |n| "core:space_#{n}" }
   end
 end
