@@ -7,5 +7,9 @@ class Entry
   field :content, type: Hash
   field :rule, type: Hash
 
-  embeds_one :author
+  belongs_to :author
+
+  validates_presence_of :created_at
+  validates_presence_of :content
+  validates_presence_of :author
 end

@@ -1,6 +1,4 @@
 require "spec_helper"
-require "./app/models/role"
-require "./app/models/author"
 
 describe Author do
   it { should have_field(:user_id).of_type(Integer) }
@@ -10,5 +8,5 @@ describe Author do
   it { should have_field(:api_url).of_type(String) }
   it { should have_field(:thumbnails).of_type(Hash) }
   it { should embed_one(:role) }
-  it { should be_embedded_in(:entry) }
+  it { should have_many(:entries).of_type(Entry) }
 end

@@ -1,5 +1,6 @@
 require 'roar/representer/json'
 require 'roar/representer/feature/hypermedia'
+require './app/representers/author_representer'
 
 module AnswerRepresenter
   include Roar::Representer::JSON

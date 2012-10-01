@@ -10,5 +10,5 @@ class Author
   field :api_url, type: String
 
   embeds_one :role
-  embedded_in :entry
+  has_many :entries
 end

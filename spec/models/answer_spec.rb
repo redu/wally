@@ -1,8 +1,7 @@
 require "spec_helper"
-require "./app/models/entry"
-require "./app/models/answer"
 
 describe Answer do
-  it { should have_field(:post_id).of_type(Integer) }
+  it { should belong_to(:post).of_type(Post) }
+  it { should validate_presence_of(:post) }
   it { should respond_to(:answer_url) }
 end

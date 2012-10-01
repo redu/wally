@@ -1,6 +1,4 @@
 require 'spec_helper'
-require './app/models/wall'
-require 'debugger'
 
 describe Wall do
   it { should have_field(:resource_id).of_type(String) }
@@ -27,8 +25,10 @@ describe Wall do
   end
 
   def create_post_on_wall(origin_wall)
-    author = build(:author)
-    post = build(:post, origin_wall: origin_wall)
+    author = create(:author)
+    entity = create(:entity)
+    post = create(:post, author: author, origin_wall: origin_wall,
+                  target_on: entity)
     post.author = author
     post
   end

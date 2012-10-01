@@ -1,6 +1,4 @@
 require "spec_helper"
-require "./app/models/role"
-require "./app/models/author"
 
 describe Role do
   it { should have_field(:name).of_type(String) }
