@@ -11,7 +11,8 @@ class Wally < Grape::API
       post = Post.fill_and_build(params[:post])
       if post.save
         status 201
-        post
+        post.extend(PostRepresenter)
+        post.to_json
       else
         status 422
         post.errors

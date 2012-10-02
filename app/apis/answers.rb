@@ -15,7 +15,6 @@ class Wally < Grape::API
       answer = Answer.find(params[:id])
       if answer
         answer.extend(AnswerRepresenter)
-        status 200
         answer.to_json
       else
         status 404
@@ -27,7 +26,8 @@ class Wally < Grape::API
       answer = Answer.fill_and_build(params[:answer])
       if answer.save
         status 201
-        answer
+        answer.extend(AnswerRepresenter)
+        answer.to_json
       else
         status 422
         answer.errors
