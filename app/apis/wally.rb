@@ -13,3 +13,4 @@ class Wally < Grape::API
   end
 
 end
+
