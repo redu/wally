@@ -34,4 +34,3 @@ class Post < Entry
     post
   end
 end
-

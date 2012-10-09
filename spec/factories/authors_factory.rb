@@ -7,5 +7,6 @@ FactoryGirl.define do
     perfil_url "http://redu.com.br/pessoas/rocklee"
     api_url "http://redu.com.br/api/users/rocklee"
     sequence(:user_id) {|n| n }
+    sequence(:token) { |n| "#{n}" }
   end
 end
