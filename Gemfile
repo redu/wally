@@ -7,6 +7,7 @@ gem "mongoid", "~> 3.0.0"
 gem "roar"
 gem 'permit', :git => 'git://github.com/redu/permit-gem.git'
 gem 'debugger'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :test do
   gem "rspec"

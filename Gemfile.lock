@@ -115,6 +115,8 @@ GEM
     rack-accept-media-types (0.9)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
+    rack-cors (0.2.7)
+      rack
     rack-mount (0.8.3)
       rack (>= 1.0.0)
     rack-respond_to (0.9.8)
@@ -155,6 +157,7 @@ DEPENDENCIES
   mongoid (~> 3.0.0)
   mongoid-rspec
   permit!
+  rack-cors
   rack-test
   roar
   rspec
