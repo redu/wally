@@ -23,7 +23,7 @@ class Post < Entry
     post = Post.new
     post.created_at = DateTime.now
     post.content = params[:content]
-    wall = Wall.find_by(resource_id: params[:origin_wall])
+    wall = Wall.find(params[:origin_wall])
     post.origin_wall = wall
     post.walls << wall
     post.author = Author.find_by(user_id: params[:author].try(:user_id))

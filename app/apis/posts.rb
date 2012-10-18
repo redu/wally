@@ -16,6 +16,7 @@ class Wally < Grape::API
       post = Post.find(params[:id])
       if post
         authorize!(post.origin_wall.resource_id)
+        post.define_rule(current_ability)
         post.extend(WrappedPostRepresenter)
         post.to_json
       else
@@ -26,9 +27,12 @@ class Wally < Grape::API
 
     post do
       header "Access-Control-Allow-Origin", "*"
+      wall = Wall.find(params[:post][:origin_wall])
+      authorize!(wall.resource_id)
       post = Post.fill_and_build(params[:post])
       if post.save
         status 201
+        post.define_rule(current_ability)
         post.extend(WrappedPostRepresenter)
         post.to_json
       else
