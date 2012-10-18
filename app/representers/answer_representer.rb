@@ -17,3 +17,9 @@ module AnswerRepresenter
     answer_url
   end
 end
+
+module WrappedAnswerRepresenter
+  include Roar::Representer::JSON
+  include AnswerRepresenter
+  self.representation_wrap = true
+end

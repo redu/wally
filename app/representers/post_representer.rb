@@ -15,12 +15,19 @@ module PostRepresenter
   property :target_on, :extend => EntityRepresenter
   property :author, :extend => AuthorRepresenter
   collection :answers, :extend => AnswerRepresenter
-  collection :context, :extend => EntityRepresenter
+  collection :contexts, :extend => EntityRepresenter
+  property :rule
 
   link :self do
      "http://wally.redu.com.br/posts/1"
   end
 
   property :action
-  property :rule
+end
+
+module WrappedPostRepresenter
+  include Roar::Representer::JSON
+  include PostRepresenter
+
+  self.representation_wrap = true
 end

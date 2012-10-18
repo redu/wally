@@ -6,7 +6,7 @@ describe Author do
   it { should have_field(:login).of_type(String) }
   it { should have_field(:perfil_url).of_type(String) }
   it { should have_field(:api_url).of_type(String) }
-  it { should have_field(:thumbnails).of_type(Hash) }
+  it { should have_field(:thumbnails).of_type(Array) }
   it { should have_field(:token).of_type(String) }
   it { should embed_one(:role) }
   it { should have_many(:entries).of_type(Entry) }

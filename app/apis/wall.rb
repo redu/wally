@@ -1,30 +1,35 @@
-require "debugger"
-
 class Wally < Grape::API
   format :json
 
   helpers do
+    def extract_token
+      if env['Authorization']
+        env['Authorization'].delete("OAuth ")
+      else
+        error!("Missing parameter Authorization in header.", 401)
+      end
+    end
+
     def current_user
-      @current_user ||= Author.find_by(token: params[:token])
+      @current_user ||= Author.find_by(token: extract_token)
     end
 
-    def authorize!(action)
-      error!("401 Unauthorized", 401) unless current_user and permit.able_to?(:read, action)
+    def authorize!(resource)
+      error!("401 Unauthorized - You don't have access to this resource or your token doesn't exist", 401) unless current_user and current_ability.can?(:read, resource)
     end
 
-    def permit
-      @permit ||= Permit::Mechanism.new(:subject_id => current_user.subject_permit, :service_name => "wally")
+    def current_ability
+      @current_ability ||= Ability.new(nil)
     end
   end
 
   resource :walls do
-    params do
-       requires :token, type: String, desc: "Your api token."
-    end
+
     get ':resource_id' do
       authorize!(params[:resource_id])
       wall = Wall.find_by(resource_id: params[:resource_id])
       if wall
+        wall.define_rule(current_ability)
         wall.extend(WallRepresenter)
         wall.to_json
       else
@@ -33,4 +38,5 @@ class Wally < Grape::API
       end
     end
   end
+
 end

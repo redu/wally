@@ -5,7 +5,7 @@ class Author
   field :user_id, type: Integer
   field :name, type: String
   field :login, type: String
-  field :thumbnails, type: Hash
+  field :thumbnails, type: Array
   field :perfil_url, type: String
   field :api_url, type: String
   field :token, type: String

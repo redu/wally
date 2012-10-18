@@ -4,8 +4,8 @@ require 'roar/representer/feature/hypermedia'
 module WallRepresenter
   include Roar::Representer::JSON
   include Roar::Representer::Feature::Hypermedia
+  self.representation_wrap = true
 
-  property :id
   property :resource_id
   collection :posts, :extend => PostRepresenter
 

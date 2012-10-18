@@ -12,6 +12,6 @@ class Entity
   has_many :target_on_posts, class_name: "Post",
     inverse_of: :target_on
 
-  has_and_belongs_to_many :context_posts, class_name: "Post",
-    inverse_of: :context
+  has_and_belongs_to_many :contexts_posts, class_name: "Post",
+    inverse_of: :contexts
 end

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :entry do
-    created_at Date.today
+    created_at DateTime.now
     content({ text: "Lorem ipsum dolor sit amet." })
     author
   end

@@ -7,6 +7,7 @@ module EntityRepresenter
 
   property :id
   property :name
+  property :entity_id
 
   link :self do
     api_url

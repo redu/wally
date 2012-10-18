@@ -19,6 +19,12 @@ class Wall
     "http://wally.redu.com.br/walls/#{self.id}"
   end
 
+  def define_rule(ability)
+    self.posts.each do |post|
+      post.define_rule(ability)
+    end
+  end
+
   private
 
   def destroy_posts

@@ -15,70 +15,79 @@ describe Grape::API do
     @post = create(:post, author: @author, origin_wall: @wall.id,
                   target_on: @entity)
   end
+  let(:authorized) { {"Authorization" => "OAuth #{@author.token}"} }
+  let(:not_authorized) { {"Authorization" => "OAuth 0"} }
 
-  context "GET post by id" do
-    context "when exist a post" do
+  describe "GET post by id" do
+    context "when is authorized" do
       before do
-        get "/posts/#{@post.id}"
-      end
-
-      it "should return the post" do
-        parsed = parse(last_response.body)
-        %w(id origin_wall target_on context action answers created_at author links).each do |attr|
-          parsed.should have_key attr
+        Wally.class_variable_set(:@@double, double("Ability"))
+        class Wally < Grape::API
+          helpers do
+            def current_ability
+              ability = @@double
+              ability.stub(:can?).and_return(true)
+              ability
+            end
+          end
         end
       end
 
-      it "should return status 200" do
-        last_response.status.should == 200
+      context "when exist a post" do
+        before do
+          get "/posts/#{@post.id}", {}, authorized
+        end
+
+        it "should return the post" do
+          parsed = parse(last_response.body)
+          parsed.should have_key "post"
+          %w(id origin_wall target_on contexts action answers created_at author links).each do |attr|
+            parsed['post'].should have_key attr
+          end
+        end
+
+        it "should return status 200" do
+          last_response.status.should == 200
+        end
+      end
+
+      context "when doesn't exist a post" do
+        before do
+          get "/posts/0", {}, authorized
+        end
+
+        it "should return empty body" do
+          last_response.body.should == ""
+        end
+
+        it "should return status 404" do
+          last_response.status.should == 404
+        end
       end
     end
 
-    context "when doesn't exist a post" do
+    describe "when isn't authorized (401) because token doesn't exist" do
       before do
-        get "/posts/0"
+        Wally.class_variable_set(:@@double, double("Ability"))
+        class Wally < Grape::API
+          helpers do
+            def current_ability
+              ability = @@double
+              ability.stub(:can?).and_return(true)
+              ability
+            end
+          end
+        end
+
+        get "/posts/#{@post.id}", {}, not_authorized
       end
 
-      it "should return empty body" do
-        last_response.body.should == ""
+      it "should return 401 (unauthorized)" do
+        last_response.status.should == 401
       end
 
-      it "should return status 404" do
-        last_response.status.should == 404
-      end
-    end
-  end
-
-  context "DELETE post by id" do
-    context "when exist a post" do
-      it "should delete a Post" do
-        expect {
-          delete "/posts/#{@post.id}"
-        }.to change(Post, :count).by(-1)
-      end
-
-      it "should return status 204" do
-        delete "/posts/#{@post.id}"
-        last_response.status.should == 204
-      end
-
-      it "should return empty body" do
-        delete "/posts/#{@post.id}"
-        last_response.body.should == ""
-      end
-    end
-
-    context "when doesn't exist a post" do
-      before do
-        delete "/posts/0"
-      end
-
-      it "should return status 404" do
-        last_response.status.should == 404
-      end
-
-      it "should return empty body" do
-        last_response.body.should == ""
+      it "should return unauthorized body" do
+        last_response.body.should == "401 Unauthorized - You don't have access to this resource or your token doesn't exist"
       end
     end
   end
@@ -90,7 +99,7 @@ describe Grape::API do
         @entity2 = create(:entity)
         @params = {
           post: {
-            created_at: Date.today,
+            created_at: DateTime.now,
             content: { text: "Lorem Ipslum" },
             author: {
               user_id: @author.user_id,
@@ -149,7 +158,6 @@ describe Grape::API do
       before do
         params = {
           post: {
-            created_at: Date.today,
           }
         }
         post "/posts", params
@@ -167,4 +175,83 @@ describe Grape::API do
       end
     end
   end
+
+  describe "DELETE post by id" do
+    context "when is authorized" do
+      context "when exist a post" do
+        it "should delete a Post" do
+          expect {
+            delete "/posts/#{@post.id}"
+          }.to change(Post, :count).by(-1)
+        end
+
+        it "should return status 204" do
+          delete "/posts/#{@post.id}"
+          last_response.status.should == 204
+        end
+
+        it "should return empty body" do
+          delete "/posts/#{@post.id}"
+          last_response.body.should == ""
+        end
+      end
+
+      context "when doesn't exist a post" do
+        before do
+          delete "/posts/0"
+        end
+
+        it "should return status 404" do
+          last_response.status.should == 404
+        end
+
+        it "should return empty body" do
+          last_response.body.should == ""
+        end
+      end
+    end
+
+    context "when isn't authorized" do
+      context "whithout authorization header" do
+        before do
+          delete "/posts/#{@post.id}"
+        end
+
+        it "should return 401 status" do
+          last_response.status.should == 401
+        end
+
+        it "should return not authorized body" do
+          last_response.body.should == "Missing parameter Authorization in header."
+        end
+      end
+
+      context "whithout permit access" do
+        before do
+          Wally.class_variable_set(:@@double, double("Ability"))
+          class Wally < Grape::API
+            helpers do
+              def current_ability
+                ability = @@double
+                ability.stub(:can?).and_return(false)
+                ability
+              end
+            end
+          end
+
+          delete "/posts/#{@post.id}", {}, authorized
+        end
+
+        it "should return 401 status" do
+          last_response.status.should == 401
+        end
+
+        it "should return not authorized body" do
+          last_response.body.should == "401 Unauthorized - You don't have access to this resource or your token doesn't exist"
+        end
+      end
+    end
+  end
+
+
 end

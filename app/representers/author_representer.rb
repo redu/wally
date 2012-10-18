@@ -10,8 +10,9 @@ module AuthorRepresenter
   property :name
   property :login
   property :user_id
-  property :thumbnails
   property :role, :extend => RoleRepresenter
+
+  collection :thumbnails
 
   link :public_self do
     api_url

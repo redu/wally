@@ -1,17 +1,26 @@
 class Answer < Entry
+  attr_reader :rule
 
   belongs_to :post
 
   validates_presence_of :post
 
+  def define_rule(ability)
+    @rule ||= if ability.can?(:manage, self)
+      { :manage => true }
+    else
+      { }
+    end
+  end
+
   def answer_url
     "http://wally.redu.com.br/answers/#{self.id}"
   end
 
-  # fill the params came from controller and build a answer entity
+  # fill the params that came from controller and build a answer entity
   def self.fill_and_build(params)
     answer = Answer.new
-    answer.created_at = params[:created_at]
+    answer.created_at = DateTime.now
     answer.content = params[:content]
     answer.post = Post.find(params[:post_id])
     answer.author =
