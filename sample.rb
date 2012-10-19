@@ -63,4 +63,4 @@ answer.save
 
 ability = Ability.new(Author.first)
 wall = Wall.first
-wall.define_rules(ability)
+wall.define_rule(ability)

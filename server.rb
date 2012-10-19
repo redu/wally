@@ -19,6 +19,9 @@ class Application < Goliath::API
     end
   end
 
+  use(Rack::Static,:root => Goliath::Application.app_path("public"),
+      :urls => ["/favicon.ico", '/css', '/js', '/img'])
+
   def response(env)
     ::Wally.call(env)
   end

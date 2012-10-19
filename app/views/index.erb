@@ -1,0 +1,153 @@
+<html>
+    <head>
+      <script src="js/jquery-1.7.2.min.js"></script>
+      <link rel="stylesheet" href="css/bootstrap-redu.css">
+      <script src="js/vendor/modernizr.js"></script>
+
+
+<script type="text/x-handlebars" data-template-name="application">
+    {{outlet}}
+</script>
+<script type="text/x-handlebars" data-template-name="wall">
+    {{outlet}}
+</script>
+<script type="text/x-handlebars" data-template-name="post_list">
+    <div class="statuses">
+        <div class="status">
+            <div class="status-content">
+                {{outlet}}
+            </div>
+        </div>
+    </div>
+    <hr class="list-separator">
+    <ol class="statuses">
+        {{#each post in content}}
+            {{view Redu.Wally.PostView contentBinding="post"}}
+        {{/each}}
+    </ol>
+</script>
+<script type="text/x-handlebars" data-template-name="post">
+    <a href="#" class="icon-link"><span class="icon-subject-gray_32_34 text-replacement">Aula</span></a>
+    {{#if post.contexts}}
+        <span class="legend context">
+            {{ post.readableContext }}
+        </span>
+        <a href="{{unbound post.targetSelfPublicLink}}" class="target">{{post.target.name}}</a>
+    {{/if}}
+
+    <div class="status-text">
+        <a href="#" class="icon-link"><img src="{{unbound post.author.thumbnail32Link }}"></a>
+        <a href="{{unbound post.author.selfPublicLink}}" class="link-name">{{ post.author.name }}</a>
+        <span class="status-info"> {{ post.readableAction  }} <a href="{{unbound post.targetSelfPublicLink}}">{{ post.readableTarget }}</a></span>
+
+        {{#if post.rule.manage}}
+            <a class="close icon-close-gray_16_18 replacement" {{action destroyRecord target="view"}}>Excluir</a>
+        {{/if}}
+        {{#if post.created_at}}
+            {{datetime post.created_at}}
+        {{/if}}
+    </div>
+    <div class="status-container">
+        <div class="status-content">
+            <div class="post-text">
+                <p class="input-user">{{ post.content.text }}</p>
+            </div>
+        </div>
+        <ol class="responses status-content">
+            <div class="last-responses">
+                <p class="legend">Visualizando as últimas respostas...</p>
+                <hr>
+            </div>
+            {{#each answer in post.answers}}
+            {{view Redu.Wally.AnswerView contentBinding="answer"}}
+            {{/each}}
+            <div class="all-responses">
+                <hr>
+                <a href="#" class="link-secondary">Mostrar todas as <span class="qtt">x</span> respostas</a>
+            </div>
+        </ol>
+    </div>
+    <ul class="actions clearfix">
+        <li>
+            <a class="icon-reply-gray_8_10-before reply-status" href="#">Responder</a>
+        </li>
+    </ul>
+    <div class="create-response">
+        {{view Redu.Wally.NewAnswerView}}
+    </div>
+    <hr class="list-separator">
+</script>
+<script type="text/x-handlebars" data-template-name="answer">
+    <hr class="border-post">
+    {{#if answer.rule.manage}}
+        <span class="close icon-close-gray_16_18" {{action destroyRecord target="view"}}>Excluir</span>
+    {{/if}}
+    <div class="re-status">
+        <div class="status-text status-text-response">
+            <a href="#" class="icon-link">
+                <img alt="{{unbound answer.author.name}}" src="{{unbound answer.author.thumbnail32Link }}">
+            </a>
+            <a href="{{unbound answer.author.selfPublicLink}}" class="link-name">{{ answer.author.name }}</a>
+            <span class="status-info">
+                respondeu:
+            </span>
+            {{#if answer.created_at}}
+                {{datetime answer.created_at}}
+            {{/if}}
+        </div>
+        <div class="post-text">
+            <p class="input-user">{{ answer.content.text }}</p>
+        </div>
+    </div>
+</script>
+<script type="text/x-handlebars" data-template-name="new_post">
+    <fieldset {{bindAttr class="view.hasError:control-error"}}>
+        {{view Ember.TextArea rows="1" cols="40" placeholder="Compartilhe algo com seus amigos através do seu mural"}} {{! bind done inside the controller}}
+        <ul class="errors_on_field">
+            <li>{{content.errors}}</li>
+        </ul>
+    </fieldset>
+    <div class="status-buttons">
+        <a class="button-default cancel">Cancelar</a>
+        <button class="button-primary" type="submit">Enviar</button>
+    </div>
+</script>
+<script type="text/x-handlebars" data-template-name="new_answer">
+    <fieldset {{bindAttr class="view.hasError:control-error"}}>
+        {{view Ember.TextArea rows="1" cols="40" placeholder="Compartilhe algo com seus amigos através do seu mural"}} {{! bind done inside the controller}}
+        <ul class="errors_on_field">
+            <li>{{view.content.errors}}</li>
+        </ul>
+    </fieldset>
+    <div class="status-buttons">
+        <a class="button-default cancel">Cancelar</a>
+        <button class="button-primary" type="submit">Enviar</button>
+    </div>
+</script>
+<script src="http://0.0.0.0:5555/wally.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                new Redu.WallyClient({
+                    token: "tokencool",
+                    resourceId: "<%= resource_id %>",
+                    rootElement: '#inhae',
+                    corsLinks: true,
+                    user: <%= user %>,
+                    target: <%= target %>,
+                    contexts: <%= contexts %>
+                });
+            });
+        </script>
+        <div id="inhae" style="margin: 0 auto;">
+        </div>
+            <script src="js/vendor/jquery.tokeninput.js"></script>
+            <script src="js/vendor/jquery.autosize.min.js"></script>
+            <script src="js/vendor/placeholder-polyfill.min.js"></script>
+            <script src="js/bootstrap-redu.js"></script>
+            <script src="http://use.typekit.com/lpo4rgu.js"></script>
+            <script>try{Typekit.load(); $(".typekit-badge").remove();}catch(e){}</script>
+    </body>
+</html>
+

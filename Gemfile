@@ -9,6 +9,7 @@ gem 'permit', :git => 'git://github.com/redu/permit-gem.git'
 gem 'debugger'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'cancan'
+gem 'erubis'
 
 group :test do
   gem "rspec"

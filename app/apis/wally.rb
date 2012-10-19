@@ -1,16 +1,27 @@
 require 'json'
+require 'erubis'
 
 class Wally < Grape::API
-  format :json
+  content_type :html, 'text/html; charset=UTF-8'
+  format :html
 
-  # GET /walls (get a list of Walls)
-  # GET /walls/:id (get a Wall)
-  # GET /walls/?resource_id=:resource_id (get all Walls of a resource)
-  # POST /walls (create a new Wall)
-  # DELETE /walls/:id (delete a Wall)
-  get "/" do
-    {:teste => "Teste", :segundo => "Outro"}
+  helpers do
+    def render(template_path, params)
+        input = File.read(template_path)
+        eruby = Erubis::Eruby.new(input)
+        page = eruby.result(params)
+    end
   end
 
+  get ':resource_id' do
+    erb_params = {
+      resource_id: params[:resource_id],
+      user: params[:user].to_json,
+      target: params[:target].to_json,
+      contexts: params[:contexts].to_json
+    }
+
+    render 'app/views/index.erb', erb_params
+  end
 end
 

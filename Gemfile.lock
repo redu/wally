@@ -73,6 +73,7 @@ GEM
     em-websocket (0.3.8)
       addressable (>= 2.1.1)
       eventmachine (>= 0.12.9)
+    erubis (2.7.0)
     eventmachine (1.0.0)
     factory_girl (4.1.0)
       activesupport (>= 3.0.0)
@@ -153,6 +154,7 @@ DEPENDENCIES
   cancan
   debugger
   em-http-request
+  erubis
   factory_girl
   goliath
   grape!
