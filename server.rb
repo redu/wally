@@ -3,7 +3,7 @@ require 'goliath'
 require 'grape'
 require "rack/cors"
 
-Dir["./app/**/*.rb"].each { |f| require f }
+require "./boot"
 
 class Application < Goliath::API
   use Rack::Cors do
