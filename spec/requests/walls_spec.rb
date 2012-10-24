@@ -107,37 +107,5 @@ describe Grape::API do
         last_response.status.should == 404
       end
     end
-
-    context "send a notification to permit" do
-      before do
-        class Wally < Grape::API
-          helpers do
-            def current_ability
-              @current_ability ||= Ability.new(current_user)
-            end
-          end
-        end
-
-        WebMock.disable_net_connect!
-        @url = "http://permit.redu.com.br/rules"
-        stub_request(:get, @url).
-          with(:query => {resource_id: @wall.resource_id,
-                          subject_id: @author.subject_permit},
-               :headers => {'accept'=>'application/json',
-                            'expect'=>''}).
-          to_return(:status => 200, :body => [{resource_id:@wall.resource_id, subject_id:@author.subject_permit,
-                                              actions: {read:true} }].to_json, :headers => {})
-        get "walls/#{@wall.resource_id}", {}, {"Authorization" =>  "OAuth #{@author.token}"}
-
-      end
-
-      it "should send a notification to permit" do
-        a_request(:get, @url).
-          with(:query => {resource_id: @wall.resource_id,
-                          subject_id: @author.subject_permit},
-               :headers => {'accept'=>'application/json',
-                            'expect'=>''}).should have_been_made
-      end
-    end
   end
 end
