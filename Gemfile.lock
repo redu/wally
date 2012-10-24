@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/redu/permit-gem.git
-  revision: b5e8dc0ef47ca10c9270f8e41e8a2f3056e9230c
+  revision: 54bf66dd94e6d1221ddde96819084136f3bbdb90
   specs:
     permit (0.0.3)
       amqp (~> 0.9.1)
@@ -9,6 +9,16 @@ GIT
       logger
       patron (~> 0.4.18)
       yajl-ruby
+
+GIT
+  remote: git://github.com/redu/untied-consumer.git
+  revision: 924f5ed55430d701924c0f3a4d46cd8ba716cf10
+  specs:
+    untied-consumer (0.0.3)
+      activemodel
+      amqp
+      configurable
+      json
 
 GIT
   remote: https://github.com/intridea/grape.git
@@ -32,18 +42,18 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.3.2)
-    amq-client (0.9.4)
+    amq-client (0.9.5)
       amq-protocol (>= 0.9.4)
       eventmachine
     amq-protocol (0.9.5)
-    amqp (0.9.7)
-      amq-client (~> 0.9.4)
+    amqp (0.9.8)
+      amq-client (~> 0.9.5)
       amq-protocol (>= 0.9.4)
       eventmachine
     async-rack (0.5.1)
       rack (~> 1.1)
     backports (2.6.4)
-    builder (3.0.3)
+    builder (3.0.4)
     cancan (1.6.8)
     columnize (0.3.6)
     config_parser (0.5.5)
@@ -165,4 +175,5 @@ DEPENDENCIES
   rack-test
   roar
   rspec
+  untied-consumer!
   webmock

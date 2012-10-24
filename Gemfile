@@ -10,6 +10,7 @@ gem 'debugger'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'cancan'
 gem 'erubis'
+gem 'untied-consumer', :git => 'git://github.com/redu/untied-consumer.git'
 
 group :test do
   gem "rspec"
