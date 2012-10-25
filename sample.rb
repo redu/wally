@@ -34,15 +34,15 @@ entity1 = Entity.new(name: "Curso tal", entity_id: 2121,
                     core_url: "http://redu.com.br/espacos/2121")
 entity1.save
 
-entity2 = Entity.new(name: "Curso tal", entity_id: 2122,
+entity2 = Entity.new(name: "Ivanete Ferreira", entity_id: 5790,
                     api_url: "http://redu.com.br/api/spaces/2121",
-                    core_url: "http://redu.com.br/espacos/2121")
+                    core_url: "http://localhost:3000/pessoas/ivanete_van")
 entity2.save
 
 wall = Wall.new(resource_id: "core:space_1")
 wall.save
 
-post = Post.new(origin_wall: wall.id, created_at: DateTime.now,
+post = Post.new(origin_wall: wall.resource_id, created_at: DateTime.now,
                 content: {text: "Teste"},
                 action: "comment",
                 links: [ { rel: "self",
@@ -63,4 +63,4 @@ answer.save
 
 ability = Ability.new(Author.first)
 wall = Wall.first
-wall.define_rule(ability)
+wall.define_rule(ability, author)
