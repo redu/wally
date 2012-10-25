@@ -43,6 +43,8 @@ describe AuthorObserver do
 
     it "should update a user" do
       @author_ob.after_update(@params)
+      @author.reload
+      @author.login.should == @params["user"]["login"]
     end
   end
 end
