@@ -1,4 +1,4 @@
-class AuthorObserver < Untied::Consumer::Observer
+class UserObserver < Untied::Consumer::Observer
   observe :user, :from => :core
 
   def after_create(model)
