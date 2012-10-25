@@ -6,8 +6,6 @@ class Author
   field :name, type: String
   field :login, type: String
   field :thumbnails, type: Array
-  field :perfil_url, type: String
-  field :api_url, type: String
   field :token, type: String
 
   embeds_one :role
@@ -20,5 +18,13 @@ class Author
 
   def subject_permit
     "core:users_#{self.user_id}"
+  end
+
+  def api_url
+    "http://www.redu.com.br/api/users/#{self.user_id}"
+  end
+
+  def perfil_url
+    "http://www.redu.com.br/pessoas/#{self.login}"
   end
 end
