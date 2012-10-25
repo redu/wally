@@ -18,7 +18,8 @@ class Wally < Grape::API
       resource_id: params[:resource_id],
       user: params[:user].to_json,
       target: params[:target].to_json,
-      contexts: params[:contexts].to_json
+      contexts: params[:contexts].to_json,
+      config: params[:config] ? params[:config].to_json : {}
     }
 
     render 'app/views/index.erb', erb_params

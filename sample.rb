@@ -21,7 +21,7 @@ Mongoid.load!("./config/mongoid.yml", :development)
 author = Author.new(name: "Juliana Lucena", login: "julianalucena",
                     user_id: 8,
                     perfil_url: "http://0.0.0.0:3000/pessoas/julianalucena",
-                    api_url: "http://0.0.0.0:3000/api/users/8", token: "cooltoken")
+                    api_url: "http://0.0.0.0:3000/api/users/8", token: "tokencool")
 
 author.thumbnails = [{href:"0.0.0.0:3000/images/new/missing_users_thumb_32.png", size:"32x32"}]
 author.role = Role.new(name: "tutor",
@@ -42,7 +42,7 @@ entity2.save
 wall = Wall.new(resource_id: "core:space_1")
 wall.save
 
-post = Post.new(origin_wall: wall.resource_id, created_at: DateTime.now,
+post = Post.new(origin_wall: wall, created_at: DateTime.now,
                 content: {text: "Teste"},
                 action: "comment",
                 links: [ { rel: "self",
