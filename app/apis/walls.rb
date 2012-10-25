@@ -3,8 +3,9 @@ class Wally < Grape::API
 
   helpers do
     def extract_token
-      if env['Authorization']
-        env['Authorization'].delete("OAuth ")
+      if env['HTTP_AUTHORIZATION']
+        env['HTTP_AUTHORIZATION'].slice!("OAuth ")
+        env['HTTP_AUTHORIZATION']
       else
         error!("Missing parameter Authorization in header.", 401)
       end
@@ -19,7 +20,7 @@ class Wally < Grape::API
     end
 
     def current_ability
-      @current_ability ||= Ability.new(nil)
+      @current_ability ||= Ability.new(current_user)
     end
   end
 
@@ -29,7 +30,7 @@ class Wally < Grape::API
       authorize!(params[:resource_id])
       wall = Wall.find_by(resource_id: params[:resource_id])
       if wall
-        wall.define_rule(current_ability)
+        wall.define_rule(current_ability, current_user)
         wall.extend(WallRepresenter)
         wall.to_json
       else

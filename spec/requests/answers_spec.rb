@@ -9,12 +9,12 @@ describe Grape::API do
     @wall = create(:wall)
     entity = create(:entity)
     @post = create(:post, author: @author,
-                   origin_wall: @wall.id, target_on: entity)
+                   origin_wall: @wall, target_on: entity)
     @answer = create(:answer, post_id: @post.id,
                      author: create(:author))
   end
-  let(:authorized) { {"Authorization" => "OAuth #{@author.token}"} }
-  let(:not_authorized) { {"Authorization" => "OAuth 0"} }
+  let(:authorized) { {"HTTP_AUTHORIZATION" => "OAuth #{@author.token}"} }
+  let(:not_authorized) { {"HTTP_AUTHORIZATION" => "OAuth 0"} }
 
   context "GET answer by id" do
     context "when is authorized" do

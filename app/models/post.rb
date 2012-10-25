@@ -6,7 +6,7 @@ class Post < Entry
 
   field :action, type: String
 
-  belongs_to :origin_wall, class_name: "Wall",
+  belongs_to :origin_wall, class_name: "Wall", foreign_key: "resource_id",
     inverse_of: :original_posts
   belongs_to :target_on, class_name: "Entity",
     inverse_of: :target_on_posts
@@ -23,7 +23,7 @@ class Post < Entry
     post = Post.new
     post.created_at = DateTime.now
     post.content = params[:content]
-    wall = Wall.find(params[:origin_wall])
+    wall = Wall.find_by(resource_id: params[:origin_wall])
     post.origin_wall = wall
     post.walls << wall
     post.author = Author.find_by(user_id: params[:author].try(:user_id))
@@ -37,13 +37,18 @@ class Post < Entry
     post
   end
 
-  def define_rule(ability)
-    @rule = if ability.can?(:manage, self)
-      { :manage => true }
-    else
-      { }
-    end
+  def define_rule(ability, current_user)
+    resource = self.origin_wall.resource_id
+    @rule ||= if self.author == current_user
+                { :manage => true }
+              else
+                if ability.can?(:manage, resource)
+                  { :manage => true }
+                else
+                  { }
+                end
+              end
 
-    self.answers.each { |a| a.define_rule(ability) }
+    self.answers.each { |a| a.define_rule(ability, current_user) }
   end
 end

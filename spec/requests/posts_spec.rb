@@ -12,11 +12,11 @@ describe Grape::API do
     @author = create(:author)
     @wall = create(:wall)
     @entity = create(:entity)
-    @post = create(:post, author: @author, origin_wall: @wall.id,
-                  target_on: @entity)
+    @post = create(:post, author: @author, origin_wall: @wall,
+                   target_on: @entity)
   end
-  let(:authorized) { {"Authorization" => "OAuth #{@author.token}"} }
-  let(:not_authorized) { {"Authorization" => "OAuth 0"} }
+  let(:authorized) { {"HTTP_AUTHORIZATION" => "OAuth #{@author.token}"} }
+  let(:not_authorized) { {"HTTP_AUTHORIZATION" => "OAuth 0"} }
 
   describe "GET post by id" do
     context "when is authorized" do
@@ -123,7 +123,7 @@ describe Grape::API do
                          api_url: @entity.api_url,
                          core_url: @entity.core_url,
                          name: @entity.name },
-             origin_wall: @wall.id,
+             origin_wall: @wall.resource_id,
              action: "comment",
              contexts: [{ entity_id: @entity.entity_id,
                          api_url: @entity.api_url,
@@ -167,7 +167,7 @@ describe Grape::API do
         before do
           params = {
             post: {
-              origin_wall: @wall.id
+              origin_wall: @wall.resource_id
             }
           }
           post "/posts", params, authorized
@@ -202,7 +202,7 @@ describe Grape::API do
                        api_url: @entity.api_url,
                        core_url: @entity.core_url,
                        name: @entity.name },
-           origin_wall: @wall.id,
+           origin_wall: @wall.resource_id,
            action: "comment",
            contexts: [{ entity_id: @entity.entity_id,
                        api_url: @entity.api_url,

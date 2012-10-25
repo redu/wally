@@ -5,12 +5,18 @@ class Answer < Entry
 
   validates_presence_of :post
 
-  def define_rule(ability)
-    @rule ||= if ability.can?(:manage, self)
-      { :manage => true }
-    else
-      { }
-    end
+  def define_rule(ability, current_user)
+    resource = self.post.origin_wall.resource_id
+
+    @rule ||= if self.author == current_user
+                { :manage => true }
+              else
+                if ability.can?(:manage, resource)
+                  { :manage => true }
+                else
+                  { }
+                end
+              end
   end
 
   def answer_url

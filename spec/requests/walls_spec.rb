@@ -27,7 +27,7 @@ describe Grape::API do
           end
         end
 
-        get("/walls/#{@wall.resource_id}", {}, {"Authorization" =>  "OAuth #{@author.token}"})
+        get("/walls/#{@wall.resource_id}", {}, {"HTTP_AUTHORIZATION" =>  "OAuth #{@author.token}"})
       end
 
       it "should return the wall" do
@@ -70,7 +70,7 @@ describe Grape::API do
           end
         end
 
-        get "walls/#{@wall.resource_id}", {}, {"Authorization" =>  "OAuth #{@author.token}"}
+        get "walls/#{@wall.resource_id}", {}, {"HTTP_AUTHORIZATION" =>  "OAuth #{@author.token}"}
 
       end
 
@@ -96,7 +96,7 @@ describe Grape::API do
           end
         end
 
-        get "/walls/0", {}, {"Authorization" =>  "OAuth #{@author.token}"}
+        get "/walls/0", {}, {"HTTP_AUTHORIZATION" =>  "OAuth #{@author.token}"}
       end
 
       it "should return empty body" do

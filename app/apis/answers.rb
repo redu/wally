@@ -14,7 +14,7 @@ class Wally < Grape::API
       answer = Answer.find(params[:id])
       if answer
         authorize!(answer.post.origin_wall.resource_id)
-        answer.define_rule(current_ability)
+        answer.define_rule(current_ability, current_user)
         answer.extend(WrappedAnswerRepresenter)
         answer.to_json
       else
@@ -35,7 +35,7 @@ class Wally < Grape::API
       answer = Answer.fill_and_build(params[:answer])
       if answer.save
         status 201
-        answer.define_rule(current_ability)
+        answer.define_rule(current_ability, current_user)
         answer.extend(WrappedAnswerRepresenter)
         answer.to_json
       else

@@ -19,9 +19,9 @@ class Wall
     "http://wally.redu.com.br/walls/#{self.id}"
   end
 
-  def define_rule(ability)
+  def define_rule(ability, current_user)
     self.posts.each do |post|
-      post.define_rule(ability)
+      post.define_rule(ability, current_user)
     end
   end
 
