@@ -6,6 +6,8 @@ class UserObserver < Untied::Consumer::Observer
     author = fill_params(author, model)
     Wall.create(:resource_id => "core:user_#{author.user_id}_home")
     Wall.create(:resource_id => "core:user_#{author.user_id}")
+    Entity.create(name: author.name, :entity_id => author.user_id,
+                 api_url: author.api_url, core_url: author.perfil_url)
     author.save
   end
 

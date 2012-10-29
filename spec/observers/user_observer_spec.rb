@@ -35,6 +35,12 @@ describe UserObserver do
         @user_ob.after_create(@params)
       }.to change(Wall, :count).by(2)
     end
+
+    it "should create an Entity" do
+      expect {
+        @user_ob.after_create(@params)
+      }.to change(Entity, :count).by(1)
+    end
   end
 
   context "updating an author" do
