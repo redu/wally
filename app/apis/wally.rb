@@ -1,4 +1,3 @@
-require 'json'
 require 'erubis'
 
 class Wally < Grape::API

@@ -1,9 +1,8 @@
 require 'bundler/setup'
 require 'goliath'
-require 'grape'
-require "rack/cors"
+require 'rack/cors'
 
-require "./boot"
+require_relative 'boot'
 
 class Application < Goliath::API
   use Rack::Cors do

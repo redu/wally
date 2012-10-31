@@ -1,3 +1,1 @@
-require "mongoid"
-
-Mongoid.load!("./config/mongoid.yml", :development)
+Mongoid.load!("./config/mongoid.yml", WallyConfig.config.env)

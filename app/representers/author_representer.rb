@@ -1,6 +1,5 @@
 require 'roar/representer/json'
 require 'roar/representer/feature/hypermedia'
-require './app/representers/role_representer'
 
 module AuthorRepresenter
   include Roar::Representer::JSON

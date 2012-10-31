@@ -1,4 +1,5 @@
 require "spec_helper"
+require "untied-consumer"
 
 describe AuthorObserver do
   before do

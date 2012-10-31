@@ -162,6 +162,7 @@ PLATFORMS
 
 DEPENDENCIES
   cancan
+  configurable
   debugger
   em-http-request
   erubis

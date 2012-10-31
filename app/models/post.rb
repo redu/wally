@@ -1,5 +1,3 @@
-require "./app/models/entry"
-
 class Post < Entry
   attr_reader :rule
   include Mongoid::Document

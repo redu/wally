@@ -1,7 +1,3 @@
-require "./app/models/post"
-require "./app/representers/post_representer"
-require "./app/representers/answer_representer"
-
 # Post
 class Wally < Grape::API
   format :json
