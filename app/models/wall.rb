@@ -8,6 +8,11 @@ class Wall
   has_many :original_posts, class_name: "Post", inverse_of: :origin_wall
   has_and_belongs_to_many :posts
 
+  has_and_belongs_to_many :referenced_walls, class_name: "Wall",
+    inverse_of: :walls
+  has_and_belongs_to_many :walls, class_name: "Wall",
+    inverse_of: :referenced_walls
+
   #Validations
   validates_presence_of :resource_id
   validates_uniqueness_of :resource_id
