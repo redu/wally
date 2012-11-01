@@ -6,7 +6,7 @@ require "boot"
 Dir["./observers/*.rb"].each { |f| require f }
 
 Untied::Consumer.configure do |c|
-  c.observers = [UserObserver]
+  c.observers = [UserObserver, LectureObserver, HierarchyObserver]
 end
 
 Mongoid.load!("./config/mongoid.yml", WallyConfig.config.env)
