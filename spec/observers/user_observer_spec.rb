@@ -45,7 +45,7 @@ describe UserObserver do
 
   context "updating an author" do
     before do
-      @author = create(:author, :user_id => 5678)
+      @author = create(:author, user_id: @params["user"]["id"])
     end
 
     it "should update an author" do
