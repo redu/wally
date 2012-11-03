@@ -5,7 +5,7 @@ class HierarchyObserver < Untied::Consumer::Observer
     kind = model.keys[0]
     entity = Entity.new
     entity = fill_params(entity, model, kind)
-    Wall.create(resource_id: "core:#{kind}_#{entity.entity_id}")
+    create_wall(entity) if kind == "space"
     entity.save
   end
 
@@ -25,5 +25,9 @@ class HierarchyObserver < Untied::Consumer::Observer
     entity.api_url = "esperando_teste"
     entity.core_url = "esperando_teste"
     entity
+  end
+
+  def create_wall(entity)
+    Wall.create(resource_id: "core:space_#{entity.entity_id}")
   end
 end
