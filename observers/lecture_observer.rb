@@ -4,7 +4,8 @@ class LectureObserver < Untied::Consumer::Observer
   def after_create(model)
     entity = Entity.new
     entity = fill_params(entity, model)
-    Wall.create(resource_id: "core:lecture_#{entity.entity_id}")
+    wall = Wall.create(resource_id: "core:lecture_#{entity.entity_id}")
+    wall.reference_walls << space_wall(model["lecture"]["space_id"])
     entity.save
   end
 
@@ -23,5 +24,11 @@ class LectureObserver < Untied::Consumer::Observer
     entity.api_url = "esperando_teste"
     entity.core_url = "esperando_teste"
     entity
+  end
+
+  def space_wall(space_id)
+    wall = Wall.find_by(resource_id: "core:space_#{space_id}")
+    return Wall.create(resource_id: "core:space_#{space_id}") if wall.nil?
+    wall
   end
 end

@@ -3,6 +3,7 @@ require "spec_helper"
 describe LectureObserver do
   before do
     @lecture_ob = LectureObserver.send(:new)
+    @space_id = Random.rand(0..100)
     @params = {
       "lecture" => {
         "avatar_content_type" => nil,
@@ -24,7 +25,8 @@ describe LectureObserver do
         "lectureable_id" => 1182,
         "removed" => false,
         "position" => 2,
-        "is_clone" => false }
+        "is_clone" => false,
+        "space_id" => @space_id}
     }
   end
 
@@ -35,12 +37,32 @@ describe LectureObserver do
       }.to change(Entity, :count).by(1)
     end
 
-    it "should create a Wall" do
-      expect {
-        @lecture_ob.after_create(@params)
-      }.to change(Wall, :count).by(1)
+    it "should create a lecture Wall" do
+      @lecture_ob.after_create(@params)
+      wall = Wall.find_by(resource_id: "core:lecture_#{@params["lecture"]["id"]}")
+      wall.should_not be_nil
     end
-  end
+
+    context "when wall space already exists" do
+      before do
+        @wall_space = create(:wall, resource_id: "core:space_#{@space_id}")
+      end
+
+      it "should reference a Wall from space_id" do
+        @lecture_ob.after_create(@params)
+        wall = Wall.find_by(resource_id: "core:lecture_#{@params["lecture"]["id"]}")
+        wall.reference_walls.should == [@wall_space]
+      end
+    end
+
+    context "when wall spaces doesn't exists" do
+      it "should create a wall space" do
+        @lecture_ob.after_create(@params)
+        wall = Wall.find_by(resource_id: "core:space_#{@space_id}")
+        wall.should_not be_nil
+      end
+    end
+ end
 
   context "updating a lecture" do
     before do
