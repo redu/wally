@@ -2,6 +2,7 @@
     <head>
       <script src="js/jquery-1.7.2.min.js"></script>
       <link rel="stylesheet" href="css/bootstrap-redu.min.css">
+      <link rel="stylesheet" href="css/wally.css">
       <script src="js/vendor/modernizr.js"></script>
 
 
@@ -136,7 +137,6 @@
                 new Redu.WallyClient({
                     token: "tokencool",
                     resourceId: "<%= resource_id %>",
-                    rootElement: '#inhae',
                     corsLinks: true,
                     user: <%= user %>,
                     target: <%= target %>,
@@ -145,8 +145,6 @@
                 });
             });
         </script>
-        <div id="inhae" style="margin: 0 auto;">
-        </div>
             <script src="js/vendor/jquery.tokeninput.min.js"></script>
             <script src="js/vendor/jquery.autosize.min.js"></script>
             <script src="js/vendor/placeholder-polyfill.min.js"></script>

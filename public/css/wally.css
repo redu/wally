@@ -1,0 +1,4 @@
+.wall { overflow: hidden; }
+
+/* FIXME Put it inside bootstrap */
+li.status { overflow: hidden; }
