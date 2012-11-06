@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Role
   include Mongoid::Document
 
@@ -6,3 +7,4 @@ class Role
 
   embedded_in :author
 end
+

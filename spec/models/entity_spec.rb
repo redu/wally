@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "spec_helper"
 
 describe Entity do
@@ -17,3 +18,4 @@ describe Entity do
   it { have_many(:target_on_posts).of_type(Post).as_inverse_of(:target_on) }
   it { have_and_belong_to_many(:context_posts).of_type(Post).as_inverse_of(:context) }
 end
+

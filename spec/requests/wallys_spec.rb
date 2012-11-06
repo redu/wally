@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "spec_helper"
 
 describe Grape::API do
@@ -57,3 +58,4 @@ describe Grape::API do
     end
   end
 end
+

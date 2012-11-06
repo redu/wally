@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "spec_helper"
 
 describe Answer do
@@ -5,3 +6,4 @@ describe Answer do
   it { should validate_presence_of(:post) }
   it { should respond_to(:answer_url) }
 end
+

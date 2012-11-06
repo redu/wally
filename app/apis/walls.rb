@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Wally < Grape::API
   format :json
 
@@ -41,3 +42,4 @@ class Wally < Grape::API
   end
 
 end
+

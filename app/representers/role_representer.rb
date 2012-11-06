@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'roar/representer/json'
 require 'roar/representer/feature/hypermedia'
 
@@ -8,3 +9,4 @@ module RoleRepresenter
   property :name
   property :thumbnail
 end
+

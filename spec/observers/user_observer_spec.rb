@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "spec_helper"
 require "untied-consumer"
 
@@ -55,3 +56,4 @@ describe UserObserver do
     end
   end
 end
+

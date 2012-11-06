@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 FactoryGirl.define do
   factory :entry do
     created_at DateTime.now
@@ -5,4 +6,5 @@ FactoryGirl.define do
     author
   end
 end
+
 

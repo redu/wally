@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class LectureObserver < Untied::Consumer::Observer
   observe :lecture, :from => :core
 
@@ -32,3 +33,4 @@ class LectureObserver < Untied::Consumer::Observer
     wall
   end
 end
+

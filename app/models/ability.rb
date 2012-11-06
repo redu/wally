@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'cancan'
 require 'permit'
 
@@ -14,3 +15,4 @@ class Ability
     end
   end
 end
+

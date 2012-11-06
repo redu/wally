@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 FactoryGirl.define do
   factory :post do
     created_at DateTime.now
@@ -5,3 +6,4 @@ FactoryGirl.define do
     action "comment"
   end
 end
+

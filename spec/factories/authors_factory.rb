@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 FactoryGirl.define do
   factory :author do
     name "Rock Lee"
@@ -8,3 +9,4 @@ FactoryGirl.define do
     sequence(:token) { |n| "#{n}" }
   end
 end
+

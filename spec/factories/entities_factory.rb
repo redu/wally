@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 FactoryGirl.define do
   factory :entity do
     sequence(:name) { |n| "Curso #{n}" }
@@ -7,3 +8,4 @@ FactoryGirl.define do
     core_url "http://www.redu.com.br"
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 $:.unshift './app/representers', './app/models'
 require "role_representer"
 require "author_representer"
@@ -64,3 +65,4 @@ answer.save
 ability = Ability.new(Author.first)
 wall = Wall.first
 wall.define_rule(ability, author)
+

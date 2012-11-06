@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'erubis'
 
 class Wally < Grape::API
@@ -24,4 +25,5 @@ class Wally < Grape::API
     render 'app/views/index.erb', erb_params
   end
 end
+
 

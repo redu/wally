@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "spec_helper"
 
 describe LectureObserver do
@@ -76,3 +77,4 @@ describe LectureObserver do
     end
   end
 end
+

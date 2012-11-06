@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Post < Entry
   attr_reader :rule
   include Mongoid::Document
@@ -50,3 +51,4 @@ class Post < Entry
     self.answers.each { |a| a.define_rule(ability, current_user) }
   end
 end
+

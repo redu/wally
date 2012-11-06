@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Author
   include Mongoid::Document
   attr_accessor :thumbnails
@@ -28,3 +29,4 @@ class Author
     "http://www.redu.com.br/pessoas/#{self.login}"
   end
 end
+

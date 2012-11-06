@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 $:.unshift File.expand_path("#{File.dirname(__FILE__)}/..")
 
 require 'bundler/setup'
@@ -53,3 +54,4 @@ RSpec.configure do |config|
     WebMock.allow_net_connect!
   end
 end
+

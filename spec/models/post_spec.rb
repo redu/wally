@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'spec_helper'
 
 describe Post do
@@ -13,3 +14,4 @@ describe Post do
     it { should validate_presence_of(:origin_wall) }
     it { should validate_presence_of(:action) }
 end
+

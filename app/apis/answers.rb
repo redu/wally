@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #Answer
 # GET /answers/:id (get an Answer)
 # POST /posts/:post_id/answers (create an Answer)
@@ -59,3 +60,4 @@ class Wally < Grape::API
     end
   end
 end
+

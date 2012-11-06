@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'configurable'
 require 'logger'
 
@@ -24,3 +25,4 @@ module WallyConfig
                               WallyConfig.config.env)
   end
 end
+

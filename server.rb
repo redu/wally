@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'bundler/setup'
 require 'goliath'
 require 'rack/cors'
@@ -25,3 +26,4 @@ class Application < Goliath::API
     ::Wally.call(env)
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UserObserver < Untied::Consumer::Observer
   observe :user, :from => :core
 
@@ -28,3 +29,4 @@ class UserObserver < Untied::Consumer::Observer
     author
   end
 end
+

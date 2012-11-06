@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'roar/representer/json'
 require 'roar/representer/feature/hypermedia'
 
@@ -21,3 +22,4 @@ module EntityRepresenter
     id.to_s
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Answer < Entry
   attr_reader :rule
 
@@ -34,3 +35,4 @@ class Answer < Entry
     answer
   end
 end
+

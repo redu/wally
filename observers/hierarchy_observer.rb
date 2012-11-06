@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class HierarchyObserver < Untied::Consumer::Observer
   observe(:course, :space, :environment, :from => :core)
 
@@ -31,3 +32,4 @@ class HierarchyObserver < Untied::Consumer::Observer
     Wall.create(resource_id: "core:space_#{entity.entity_id}")
   end
 end
+

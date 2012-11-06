@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'roar/representer/json'
 require 'roar/representer/feature/hypermedia'
 
@@ -25,3 +26,4 @@ module AuthorRepresenter
     id.to_s
   end
 end
+

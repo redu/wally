@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "spec_helper"
 
 describe Author do
@@ -32,3 +33,4 @@ describe Author do
     end
   end
 end
+

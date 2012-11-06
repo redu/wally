@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'roar/representer/json'
 require 'roar/representer/feature/hypermedia'
 
@@ -13,3 +14,4 @@ module WallRepresenter
     wall_path
   end
 end
+

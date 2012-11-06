@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 $:.unshift File.dirname(__FILE__)
 
 require 'bundler/setup'
@@ -34,3 +35,4 @@ require 'walls'
 require 'wally'
 require 'posts'
 require 'answers'
+

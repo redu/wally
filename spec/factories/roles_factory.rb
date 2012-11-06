@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 FactoryGirl.define do
   factory :role do
     name "tutor"
@@ -5,3 +6,4 @@ FactoryGirl.define do
                 size: "16x16"})
   end
 end
+

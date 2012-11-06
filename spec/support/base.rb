@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module WallySupport
   module Helpers
     def parse(json)
@@ -5,4 +6,5 @@ module WallySupport
     end
   end
 end
+
 

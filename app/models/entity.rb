@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Entity
   include Mongoid::Document
 
@@ -17,3 +18,4 @@ class Entity
   has_and_belongs_to_many :contexts_posts, class_name: "Post",
     inverse_of: :contexts
 end
+

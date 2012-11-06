@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'spec_helper'
 
 describe Wall do
@@ -37,3 +38,4 @@ describe Wall do
     post
   end
 end
+

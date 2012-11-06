@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Entry
   include Mongoid::Document
 
@@ -17,3 +18,4 @@ class Entry
     end
   end
 end
+

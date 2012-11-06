@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'roar/representer/json'
 require 'roar/representer/feature/hypermedia'
 
@@ -30,3 +31,4 @@ module WrappedAnswerRepresenter
   include AnswerRepresenter
   self.representation_wrap = true
 end
+

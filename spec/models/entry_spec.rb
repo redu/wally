@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'spec_helper'
 
 describe Entry do
@@ -19,3 +20,4 @@ describe Entry do
     end
   end
 end
+

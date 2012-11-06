@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "spec_helper"
 
 describe Role do
@@ -6,3 +7,4 @@ describe Role do
 
   it { should be_embedded_in(:author) }
 end
+

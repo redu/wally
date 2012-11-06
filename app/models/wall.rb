@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Wall
   include Mongoid::Document
 
@@ -41,3 +42,4 @@ class Wall
     end
   end
 end
+

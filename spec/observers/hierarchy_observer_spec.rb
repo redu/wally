@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "spec_helper"
 
 describe HierarchyObserver do
@@ -166,3 +167,4 @@ describe HierarchyObserver do
     end
   end
 end
+
