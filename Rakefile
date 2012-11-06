@@ -9,6 +9,4 @@ Untied::Consumer.configure do |c|
   c.observers = [UserObserver, LectureObserver, HierarchyObserver]
 end
 
-Mongoid.load!("./config/mongoid.yml", WallyConfig.config.env)
-
 load "untied-consumer/tasks/untied.tasks"
