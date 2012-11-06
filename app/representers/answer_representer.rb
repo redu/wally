@@ -5,8 +5,8 @@ module AnswerRepresenter
   include Roar::Representer::JSON
   include Roar::Representer::Feature::Hypermedia
 
-  property :id
-  property :post_id
+  property :a_id, :from => :id
+  property :p_id, :from => :post_id
   property :created_at
   property :author, :extend => AuthorRepresenter
   property :content
@@ -14,6 +14,14 @@ module AnswerRepresenter
 
   link :self do
     answer_url
+  end
+
+  def a_id
+    id.to_s
+  end
+
+  def p_id
+    post_id.to_s
   end
 end
 

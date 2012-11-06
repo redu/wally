@@ -5,21 +5,24 @@ module PostRepresenter
   include Roar::Representer::JSON
   include Roar::Representer::Feature::Hypermedia
 
-  property :id
+  property :p_id, :from => :id
   property :origin_wall
   property :created_at
   property :content
   property :target_on, :extend => EntityRepresenter
   property :author, :extend => AuthorRepresenter
+  property :rule
+  property :action
   collection :answers, :extend => AnswerRepresenter
   collection :contexts, :extend => EntityRepresenter
-  property :rule
 
   link :self do
      "http://wally.redu.com.br/posts/1"
   end
 
-  property :action
+  def p_id
+    id.to_s
+  end
 end
 
 module WrappedPostRepresenter

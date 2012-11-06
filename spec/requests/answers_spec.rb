@@ -46,6 +46,16 @@ describe Grape::API do
         it "should return status 200" do
           last_response.status.should == 200
         end
+
+        it "should return correct id" do
+          parsed = parse(last_response.body)
+          parsed["answer"]["id"].should == @answer.id.to_s
+        end
+
+        it "should return correct post_id" do
+          parsed = parse(last_response.body)
+          parsed["answer"]["post_id"].should == @answer.post_id.to_s
+        end
       end
 
       context "when doesn't exist an answer" do

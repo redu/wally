@@ -38,7 +38,7 @@ describe Grape::API do
           get "/posts/#{@post.id}", {}, authorized
         end
 
-        it "should return the post" do
+        it "should return the post with all keys" do
           parsed = parse(last_response.body)
           parsed.should have_key "post"
           %w(id origin_wall target_on contexts action answers created_at author links rule).each do |attr|
@@ -48,6 +48,21 @@ describe Grape::API do
 
         it "should return status 200" do
           last_response.status.should == 200
+        end
+
+        it "should return correct id" do
+          parsed = parse(last_response.body)
+          parsed["post"]["id"].should == @post.id.to_s
+        end
+
+        it "should return author with correct id" do
+          parsed = parse(last_response.body)
+          parsed["post"]["author"]["id"].should == @post.author.id.to_s
+        end
+
+        it "should return entity with correct id" do
+          parsed = parse(last_response.body)
+          parsed["post"]["target_on"]["id"].should == @post.target_on.id.to_s
         end
       end
 

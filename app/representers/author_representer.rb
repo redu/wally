@@ -5,7 +5,7 @@ module AuthorRepresenter
   include Roar::Representer::JSON
   include Roar::Representer::Feature::Hypermedia
 
-  property :id
+  property :a_id, :from => :id
   property :name
   property :login
   property :user_id
@@ -19,5 +19,9 @@ module AuthorRepresenter
 
   link :self do
     perfil_url
+  end
+
+  def a_id
+    id.to_s
   end
 end
