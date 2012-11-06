@@ -7,7 +7,7 @@ class Wally < Grape::API
 
   helpers do
     def render(template_path, params)
-        input = File.read(template_path)
+        input = File.read("#{WallyConfig.config.root}/app/#{template_path}")
         eruby = Erubis::Eruby.new(input)
         page = eruby.result(params)
     end
@@ -22,7 +22,7 @@ class Wally < Grape::API
       config: params[:config] ? params[:config].to_json : {}
     }
 
-    render 'app/views/index.erb', erb_params
+    render 'views/index.erb', erb_params
   end
 end
 
