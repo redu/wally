@@ -6,6 +6,8 @@ export APPNAME='wally'
 export PIDFILE="/data/${APPNAME}/current/tmp/${APPNAME}.pid"
 export LOGFILE="/data/${APPNAME}/current/log/${RACK_ENV}.log"
 export APPCOMMAND="bundle exec ruby server.rb --port ${PORT} --environment ${RACK_ENV} --pid ${PIDFILE} --log ${LOGFILE} --daemonize"
+export LANG="C"
+export LC_ALL="en_US.UTF-8"
 
 case $1 in
   start)
