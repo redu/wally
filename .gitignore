@@ -1,5 +1,4 @@
 *.swp
-.rvmrc
 .bundle/
 bin/*
 .DS_Store
