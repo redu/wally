@@ -6,7 +6,7 @@ describe Wall do
   it { should validate_uniqueness_of(:resource_id) }
   it { should have_and_belong_to_many(:posts) }
   it { should have_and_belong_to_many(:reference_walls).as_inverse_of(:walls) }
-  it { should have_and_belong_to_many(:walls).as_inverse_of(:referenced_walls) }
+  it { should have_and_belong_to_many(:walls).as_inverse_of(:reference_walls) }
   it { should have_many(:original_posts).as_inverse_of(:origin_wall) }
 
   subject { create(:wall) }
