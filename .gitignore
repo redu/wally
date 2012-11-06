@@ -3,3 +3,4 @@
 .bundle/
 bin/*
 .DS_Store
+log
